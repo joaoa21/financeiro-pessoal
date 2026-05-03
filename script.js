@@ -397,7 +397,7 @@ function render() {
 <div class="scard c-blue">
 <div class="scard-label">Saldo Inicial</div>
 <div class="scard-value">${brl(data.saldoInicial)}</div>
-<div class="scard-sub"><a href="#" onclick="editSaldo(event)" style="color:var(--text3);text-decoration:none;font-size:16px">⚙ editar</a></div>
+<div class="scard-sub"><a href="#" onclick="editSaldo(event)" style="color:var(--text3);text-decoration:none;font-size:16px"><i class="fa-solid fa-pen"></i> editar</a></div>
 </div>
 <div class="scard c-green">
 <div class="scard-label">Renda Planejada</div>
@@ -450,11 +450,11 @@ function render() {
     .reduce((s, d) => s + d.planejado, 0);
   document.getElementById("despBreak").innerHTML = `
 <div class="sub2-row">
-<span class="sub2-tag"><span class="sub2-dot" style="background:#8b9ab0"></span>Fixas ${brl(tBoleto + tCartao)}</span>
+<span class="sub2-tag"><span class="sub2-dot" style="background:#60a5fa"></span>Fixas ${brl(tBoleto + tCartao)}</span>
 <span class="sub2-tag"><span class="sub2-dot" style="background:#fbbf24"></span>Esporádico ${brl(tEspora)}</span>
 </div>
 <div class="sub2-row">
-<span class="sub2-tag"><span class="sub2-dot" style="background:#60a5fa"></span>Boleto ${brl(tBoleto)}</span>
+<span class="sub2-tag"><span class="sub2-dot" style="background:#8b9ab0"></span>Boleto ${brl(tBoleto)}</span>
 <span class="sub2-tag"><span class="sub2-dot" style="background:#a78bfa"></span>Cartão ${brl(tCartao)}</span>
 </div>`;
 
@@ -507,14 +507,14 @@ function render() {
         return `<tr class="${tc}" draggable="true"
   ondragstart="dStart(event,'${d.id}','d')" ondragover="dOver(event)"
   ondrop="dDrop(event,'${d.id}','d')" ondragleave="dLeave(event)" ondragend="dEnd()">
-  <td title="${esc(d.nome)}">${esc(d.nome)}${badge}${d.autoReplicar ? '<span class="auto-rep-badge">🔄</span>' : ""}</td>
+  <td title="${esc(d.nome)}">${esc(d.nome)}${badge}${d.autoReplicar ? '<span class="auto-rep-badge"><i class="fa-solid fa-rotate"></i></span>' : ""}</td>
   <td>${brl(d.planejado)}</td>
   <td class="td-muted">${fmtDay(d.data)}</td>
   <td class="right"><div class="row-acts">
-    <button class="ibt sch ${agendado ? "is-sch" : ""}" onclick="toggleAgendado('${d.id}')" title="${agendado ? "Cancelar agendamento" : "Agendar pagamento"}" ${done ? "style='opacity:0.3;pointer-events:none'" : ""}>📅</button>
-    <button class="ibt chk ${done ? "is-done" : ""}" onclick="toggle('d','${d.id}')" title="${done ? "Desmarcar" : "Marcar pago"}">✓</button>
-    <button class="ibt" onclick="openModal('despesa','${d.id}')" title="Editar">⚙</button>
-    <button class="ibt del" onclick="del('d','${d.id}')" title="Excluir">✕</button>
+    <button class="ibt sch ${agendado ? "is-sch" : ""}" onclick="toggleAgendado('${d.id}')" title="${agendado ? "Cancelar agendamento" : "Agendar pagamento"}" ${done ? "style='opacity:0.3;pointer-events:none'" : ""}><i class="fa-solid fa-calendar-check"></i></button>
+    <button class="ibt chk ${done ? "is-done" : ""}" onclick="toggle('d','${d.id}')" title="${done ? "Desmarcar" : "Marcar pago"}"><i class="fa-solid fa-check"></i></button>
+    <button class="ibt" onclick="openModal('despesa','${d.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>
+    <button class="ibt del" onclick="del('d','${d.id}')" title="Excluir"><i class="fa-solid fa-xmark"></i></button>
   </div></td>
 </tr>`;
       })
@@ -545,9 +545,9 @@ function render() {
   <td>${brl(r.planejado)}</td>
   <td class="td-muted">${fmtDay(r.data)}</td>
   <td class="right"><div class="row-acts">
-    <button class="ibt chk ${done ? "is-done" : ""}" onclick="toggle('r','${r.id}')" title="${done ? "Desmarcar" : "Marcar recebido"}">✓</button>
-    <button class="ibt" onclick="openModal('renda','${r.id}')" title="Editar">⚙</button>
-    <button class="ibt del" onclick="del('r','${r.id}')" title="Excluir">✕</button>
+    <button class="ibt chk ${done ? "is-done" : ""}" onclick="toggle('r','${r.id}')" title="${done ? "Desmarcar" : "Marcar recebido"}"><i class="fa-solid fa-check"></i></button>
+    <button class="ibt" onclick="openModal('renda','${r.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>
+    <button class="ibt del" onclick="del('r','${r.id}')" title="Excluir"><i class="fa-solid fa-xmark"></i></button>
   </div></td>
 </tr>`;
       })
@@ -577,11 +577,11 @@ function render() {
               })
             : "";
           return `<div class="inv-aporte-row${isConf ? "" : " pending"}">
-      <button class="inv-aporte-chk${isConf ? " done" : ""}" onclick="toggleAportePrevisto('${invId}','${a.id}')" title="${isConf ? "Marcar como previsto" : "Confirmar aporte"}">${isConf ? "✓" : "○"}</button>
+      <button class="inv-aporte-chk${isConf ? " done" : ""}" onclick="toggleAportePrevisto('${invId}','${a.id}')" title="${isConf ? "Marcar como previsto" : "Confirmar aporte"}"><i class="fa-solid ${isConf ? "fa-check" : "fa-circle"}"></i></button>
       <span>${dt}</span>
       <span class="inv-aporte-val">${brl(a.valor)}</span>
       ${a.previsto ? '<span class="inv-aporte-tag">Previsto</span>' : ""}
-      <button class="inv-aporte-del" onclick="delAporte('${invId}','${a.id}')" title="Remover aporte">✕</button>
+      <button class="inv-aporte-del" onclick="delAporte('${invId}','${a.id}')" title="Remover aporte"><i class="fa-solid fa-xmark"></i></button>
     </div>`;
         };
 
@@ -595,9 +595,9 @@ function render() {
           const aporteRows = i.aportes.map((a) => aporteFmt(a, i.id)).join("");
           return `<div class="inv-card cdb-card">
     <div class="inv-card-acts">
-      <button class="btn-ghost" onclick="openAporte('${i.id}')">+ Aporte</button>
-      <button class="ibt" onclick="openModal('investimento','${i.id}')" title="Editar">⚙</button>
-      <button class="ibt del" onclick="del('i','${i.id}')">✕</button>
+      <button class="btn-ghost" onclick="openAporte('${i.id}')"><i class="fa-solid fa-plus"></i> Aporte</button>
+      <button class="ibt" onclick="openModal('investimento','${i.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>
+      <button class="ibt del" onclick="del('i','${i.id}')"><i class="fa-solid fa-xmark"></i></button>
     </div>
     <div class="inv-name">${esc(i.nome)}</div>
     <div class="inv-type">CDB · ${i.percentualCDI || 100}% CDI</div>
@@ -605,7 +605,7 @@ function render() {
     <div class="inv-rend ${rd < 0 ? "neg" : ""}">${sg}${brl(rd)} (${sg}${rp.toFixed(3)}%)</div>
     <div class="inv-meta"><span>Confirmado: ${brl(vt)}</span><span>${i.aportes.length} aporte(s)</span></div>
     ${i.aportes.length ? `<div class="inv-aportes">${aporteRows}</div>` : ""}
-    <div style="margin-top:8px"><button class="btn-ghost" style="width:100%;justify-content:center" onclick="carryInvest('${i.id}')">→ Próximo mês</button></div>
+    <div style="margin-top:8px"><button class="btn-ghost" style="width:100%;justify-content:center" onclick="carryInvest('${i.id}')"><i class="fa-solid fa-arrow-right"></i> Próximo mês</button></div>
   </div>`;
         }
         // outros investimentos
@@ -619,15 +619,15 @@ function render() {
           .join("");
         return `<div class="inv-card">
   <div class="inv-card-acts">
-    <button class="btn-ghost" onclick="openAporte('${i.id}')">+ Aporte</button>
-    <button class="ibt" onclick="openModal('investimento','${i.id}')" title="Editar">⚙</button>
-    <button class="ibt del" onclick="del('i','${i.id}')">✕</button>
+    <button class="btn-ghost" onclick="openAporte('${i.id}')"><i class="fa-solid fa-plus"></i> Aporte</button>
+    <button class="ibt" onclick="openModal('investimento','${i.id}')" title="Editar"><i class="fa-solid fa-pen"></i></button>
+    <button class="ibt del" onclick="del('i','${i.id}')"><i class="fa-solid fa-xmark"></i></button>
   </div>
   <div class="inv-name">${esc(i.nome)}</div>
   <div class="inv-type">${esc(i.tipo)}</div>
   <div class="inv-val">${brl(totalVal)}</div>
   ${i.aportes && i.aportes.length ? `<div class="inv-aportes">${aporteRows}</div>` : ""}
-  <div style="margin-top:8px"><button class="btn-ghost" style="width:100%;justify-content:center" onclick="carryInvest('${i.id}')">→ Próximo mês</button></div>
+  <div style="margin-top:8px"><button class="btn-ghost" style="width:100%;justify-content:center" onclick="carryInvest('${i.id}')"><i class="fa-solid fa-arrow-right"></i> Próximo mês</button></div>
 </div>`;
       })
       .join("");
@@ -885,7 +885,7 @@ ${cdiAA ? `<div class="modal-info">Rendimento efetivo: ${cdiAA}% a.a. (${inv.per
 </div>
 <label class="check-row">
 <input type="checkbox" id="fAportePrevisto">
-<span>📅 <strong>Aporte futuro/previsto</strong> — não conta na carteira nem no CDI ainda</span>
+<span><i class="fa-solid fa-calendar-check"></i> <strong>Aporte futuro/previsto</strong> — não conta na carteira nem no CDI ainda</span>
 </label>
 <div class="fg"><label>Impacto no saldo deste mês</label>
 <div class="radio-group">
@@ -963,7 +963,7 @@ function openModal(type, editId = null) {
   <input type="checkbox" id="fPago" ${pago ? "checked" : ""}>
   <span>Já foi pago</span>
 </label>
-${tipoVal === "fixo" ? `<label class="check-row" id="fAutoRepWrap"><input type="checkbox" id="fAutoRep" ${item?.autoReplicar ? "checked" : ""}><span>🔄 Replicar automaticamente nos próximos meses</span></label>` : ""}`;
+${tipoVal === "fixo" ? `<label class="check-row" id="fAutoRepWrap"><input type="checkbox" id="fAutoRep" ${item?.autoReplicar ? "checked" : ""}><span><i class="fa-solid fa-rotate"></i> Replicar automaticamente nos próximos meses</span></label>` : ""}`;
   } else if (type === "renda") {
     const rec = item ? item.realizado > 0 : false;
     document.getElementById("modalBody").innerHTML = `

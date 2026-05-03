@@ -11,6 +11,7 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
   </head>
 
   <body>
@@ -26,53 +27,29 @@
       </div>
       <div class="header-right">
         <button class="btn-sm" onclick="copyPrevMonthFixed()">
-          + &nbsp; Copiar fixas
+          <i class="fa-solid fa-copy"></i> Copiar fixas
         </button>
         <button class="btn-sm" onclick="copyPrevMonthRenda()">
-          + &nbsp; Copiar renda
+          <i class="fa-solid fa-copy"></i> Copiar renda
         </button>
-        <button class="btn-sm" onclick="toggleHistPanel()">📊 Histórico</button>
+        <button class="btn-sm" onclick="toggleHistPanel()"><i class="fa-solid fa-chart-bar"></i> Histórico</button>
         <div class="util-menu-wrap">
           <button class="util-menu-btn" onclick="toggleUtilMenu(event)">
-            Mais ▾
+            <i class="fa-solid fa-ellipsis-vertical"></i> Mais
           </button>
           <div class="util-menu-dropdown" id="utilMenu">
-            <button
-              class="util-menu-item"
-              onclick="
-                exportData();
-                closeUtilMenu();
-              "
-            >
-              ⬇ Exportar JSON
+            <button class="util-menu-item" onclick="exportData(); closeUtilMenu();">
+              <i class="fa-solid fa-download"></i> Exportar JSON
             </button>
-            <button
-              class="util-menu-item"
-              onclick="
-                exportCSV();
-                closeUtilMenu();
-              "
-            >
-              ⬇ Exportar CSV
+            <button class="util-menu-item" onclick="exportCSV(); closeUtilMenu();">
+              <i class="fa-solid fa-file-csv"></i> Exportar CSV
             </button>
-            <button
-              class="util-menu-item"
-              onclick="
-                importClick();
-                closeUtilMenu();
-              "
-            >
-              ⬆ Importar JSON
+            <button class="util-menu-item" onclick="importClick(); closeUtilMenu();">
+              <i class="fa-solid fa-upload"></i> Importar JSON
             </button>
             <div class="util-sep"></div>
-            <button
-              class="util-menu-item danger"
-              onclick="
-                clearAll();
-                closeUtilMenu();
-              "
-            >
-              🗑 Limpar tudo
+            <button class="util-menu-item danger" onclick="clearAll(); closeUtilMenu();">
+              <i class="fa-solid fa-trash"></i> Limpar tudo
             </button>
           </div>
         </div>
@@ -91,7 +68,7 @@
       <div class="hist-panel" id="histPanel">
         <div class="hist-head">
           <div class="hist-title">📊 Histórico — Últimos 12 meses</div>
-          <button class="btn-sm" onclick="toggleHistPanel()">✕ Fechar</button>
+          <button class="btn-sm" onclick="toggleHistPanel()"><i class="fa-solid fa-xmark"></i> Fechar</button>
         </div>
         <div class="hist-body" id="histBody"></div>
       </div>
@@ -112,7 +89,7 @@
                 </div>
               </div>
               <button class="btn-add" onclick="openModal('despesa')">
-                + &nbsp; Adicionar
+                <i class="fa-solid fa-plus"></i> Adicionar
               </button>
             </div>
             <div class="ftabs">
@@ -164,7 +141,7 @@
                 </div>
               </div>
               <button class="btn-add" onclick="openModal('renda')">
-                + &nbsp; Adicionar
+                <i class="fa-solid fa-plus"></i> Adicionar
               </button>
             </div>
           </div>
@@ -217,7 +194,7 @@
                   <span id="cdiLabel">CDI...</span>
                 </div>
                 <button class="btn-add" onclick="openModal('investimento')">
-                  + &nbsp; Adicionar
+                  <i class="fa-solid fa-plus"></i> Adicionar
                 </button>
               </div>
             </div>
